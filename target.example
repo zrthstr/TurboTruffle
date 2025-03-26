@@ -1,0 +1,5 @@
+GH_TOKEN="ghp_TBD"
+ORG="TBD"
+
+# Change when GitHub is addressed as another host, e.g., when using multiple SSH keys.
+REPLACEMENT_HOST="github.com"
