@@ -5,7 +5,7 @@ Thin ergonomic wrapper around the trufflehog secret scanning tool.
 ## About
 
 Given a GitHub PAT, TurboTruffle fetches all repos for a given org.
-Using `git clone --mirror` and (https://github.com/trufflesecurity/trufflehog)[Trufflehog)] to exhaustively scan GitHub repositories, including all commits, branches, and commit messages.
+Using `git clone --mirror` and [Trufflehog](https://github.com/trufflesecurity/trufflehog) to exhaustively scan GitHub repositories, including all commits, branches, and commit messages.
 
 While Trufflehog is a great tool, it can be somewhat unergonomic at times.
 Trufflehog requires repositories to be named with a .git extension for processing.
