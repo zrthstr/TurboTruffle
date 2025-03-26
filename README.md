@@ -1,8 +1,16 @@
 # TurboTuffle
-thin ergonomic wrapper around trufflehog secret scanning tool
 
-using git clone --mirror to scan github repos to the fullest, all commit, all branches, all commit messages etc etc
-somhow turfflehog will only process them if they are called .git ..
+Thin ergonomic wrapper around the trufflehog secret scanning tool.
+
+## About
+
+Given a GitHub PAT, TurboTruffle fetches all repos for a given org.
+Using `git clone --mirror` and (https://github.com/trufflesecurity/trufflehog)[Trufflehog)] to exhaustively scan GitHub repositories, including all commits, branches, and commit messages.
+
+While Trufflehog is a great tool, it can be somewhat unergonomic at times.
+Trufflehog requires repositories to be named with a .git extension for processing.
+
+A .html file is produced that links to the file with its findings on GitHub at the exact commit message.
 
 
 ## setup
@@ -17,11 +25,6 @@ see `Makefile` for details
 edit `target` file ..
 ```
 make run
-```
-
-or
-```
-vim target && make build run
 ```
 
 then see output `.html` files in `results`
