@@ -12,6 +12,13 @@ go_test:
 run:
 	bash test_token.sh
 	bash get.sh
-	bash rename.sh
 	bash scan.sh
+	bash fix_repo_urls.sh
+	bash rm_empty.sh
 	bash gen_html.sh
+	bash echo_url.sh
+
+
+rm:
+	rm -rf results repos
+	mkdir results repos 

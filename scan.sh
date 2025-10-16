@@ -1,25 +1,29 @@
 #!/bin/bash
+set -euo pipefail
 
 echo "======================================="
-echo [+] Running scan
+echo "[+] Running scan (mirrors)"
 echo "======================================="
-
-source target
 
 IMAGE="ghcr.io/trufflesecurity/trufflehog:latest"
-
-test -d results || mkdir results
-test -d repos || { echo "repos dir not found"; exit 1; }
-
+mkdir -p results
 cd repos
+shopt -s nullglob
 
-for REPO_DIR in */; do
-  REPO_NAME=$(basename $REPO_DIR)
-  echo "Preparing to scan $REPO_NAME"
+for BARE in *.git/; do
+  BARE="${BARE%/}"
+  NAME="${BARE%.git}"
+  echo "Preparing to scan $NAME"
+  docker run --rm --entrypoint /bin/sh -v "$PWD:/pwd:ro" "$IMAGE" -c '
+    set -e
+    git clone /pwd/'"$BARE"' /tmp/wt >/dev/stderr 2>&1
+    cd /tmp/wt
+    git fetch --all --prune >/dev/stderr 2>&1
+    git checkout -f >/dev/stderr 2>&1
+    trufflehog -j git file:///tmp/wt
+  ' > "../results/$NAME.trufflog"
 
-
-  docker run --rm -it \
-    -v "$PWD:/pwd" \
-    $IMAGE -j git file:///pwd/$REPO_NAME 2>&1 | tee ../results/$REPO_NAME.trufflog
 
 done
+
+
