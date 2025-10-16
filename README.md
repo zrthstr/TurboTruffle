@@ -1,4 +1,4 @@
-# TurboTuffle
+# TurboTruffle
 
 Thin ergonomic wrapper around the trufflehog secret scanning tool.
 
