@@ -1,3 +1,7 @@
+echo "======================================="
+echo [+] Running gen_html
+echo "======================================="
+
 HL="highlighter.js"
 
 for file in results/*.trufflog;

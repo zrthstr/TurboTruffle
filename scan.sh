@@ -1,5 +1,12 @@
 #!/bin/bash
+
+echo "======================================="
+echo [+] Running scan
+echo "======================================="
+
 source target
+
+IMAGE="ghcr.io/trufflesecurity/trufflehog:latest"
 
 test -d results || mkdir results
 test -d repos || { echo "repos dir not found"; exit 1; }
@@ -13,6 +20,6 @@ for REPO_DIR in */; do
 
   docker run --rm -it \
     -v "$PWD:/pwd" \
-    trufflesecurity/trufflehog:latest -j git file:///pwd/$REPO_NAME 2>&1 | tee ../results/$REPO_NAME.trufflog
+    $IMAGE -j git file:///pwd/$REPO_NAME 2>&1 | tee ../results/$REPO_NAME.trufflog
 
 done

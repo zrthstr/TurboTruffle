@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "======================================="
+echo [+] Running rename
+echo "======================================="
+
 cd repos
 
 for REPO_DIR in *.git; do
